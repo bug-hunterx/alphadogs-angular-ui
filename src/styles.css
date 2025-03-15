@@ -24,21 +24,13 @@ footer {
   text-align: center;
 }
 
-/* Global Page Layout */
-.header, .footer {
-  background-color: #3e246a;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 20px;
-}
 
 /* Main content fills the remaining space */
 .content {
   flex: 1; /* This makes it expand */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
+  align-items: normal;
   background-color: #3e246a; /* Ensure background is applied */
   padding: 20px;
 }

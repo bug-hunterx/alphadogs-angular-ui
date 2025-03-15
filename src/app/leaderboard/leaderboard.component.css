@@ -1,33 +1,59 @@
-mat-table {
-  width: 100%;
-  margin: 20px auto;
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-mat-header-cell {
-  font-weight: bold;
-}
-
-mat-cell, mat-header-cell {
+.leaderboard-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #3f2469;
   padding: 10px;
-  text-align: left;
+  /*border-radius: 10px;*/
+  width: 400px;
+  margin: 10px 0;
+  font-size: x-large;
+
+  /*box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);*/
 }
 
-/* Ensure table container takes full width */
-.mat-elevation-z8 {
-  width: 100%;
+.dog-place {
+  font-weight: bold;
+  margin-right: 20px;
+  color: gold;
+  min-width: 15px;
+  /*background: #802ad9;*/
 }
 
-/* Table container */
-.table-container {
-  width: 100%;
-  max-width: 900px; /* Adjust width if needed */
-  background-color: white; /* White background for table */
-  padding: 20px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+.dog-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
+.dog-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
 
+.dog-name {
+  color: white;
+  background: #8451d3;
+  padding: 10px;
+  /*border-radius: 5px;*/
+  width: 100%
+}
 
-
-
+.dog-score {
+  background: #6d36bc;
+  padding: 10px;
+  padding-left: 15px;
+  /*border-radius: 5px;*/
+  min-width: 50px;
+}

@@ -1,23 +1,27 @@
-.logo img {
-  padding: 30px 0;
-  width: 100%;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: #371952;
+  color: white;
 }
 
-.resource-list {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: larger;
-  padding: 10px;
+.logo {
+  height: 70px;
+}
+
+.title {
+  flex-grow: 1;
   text-align: center;
+  margin: 0;
+  font-size: xx-large;
 }
 
-.resource-list ul {
-    text-align: left;
-    margin: 0 auto;
-    width: 300px;
-}
 
-.resource-list a {
-  color: black;
-  line-height: 30px;
+.footer {
+  background: #371952;
+  color: white;
+  text-align: right;
 }
 

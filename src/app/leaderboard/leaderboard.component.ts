@@ -4,14 +4,10 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 
 interface LeaderboardEntry {
-  dog_id: number;
-  first_place_count: number;
-  second_place_count: number;
-  third_place_count: number;
-  dog: {
-    id: number;
-    name: string;
-  };
+  id: number;
+  score: number;
+  name: string;
+  place: number;
 }
 
 @Component({
@@ -20,10 +16,7 @@ interface LeaderboardEntry {
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'first_place_count', 'second_place_count', 'third_place_count'];
-  dataSource = new MatTableDataSource<LeaderboardEntry>();
-
-  @ViewChild(MatSort) sort!: MatSort;
+  leaderboardEntries: LeaderboardEntry[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -33,10 +26,16 @@ export class LeaderboardComponent implements OnInit {
   }
 
   fetchLeaderboard(): void {
-    this.http.get<LeaderboardEntry[]>('https://lwzylsk696.execute-api.ap-southeast-2.amazonaws.com/uat/dogs/leaderboard?limit=5').subscribe(
+    this.http.get<LeaderboardEntry[]>('https://lwzylsk696.execute-api.ap-southeast-2.amazonaws.com/uat/dogs/leaderboard').subscribe(
       (data) => {
-        this.dataSource.data = data;
-        this.dataSource.sort = this.sort; // Enable sorting
+        // this.leaderboardEntries = [
+        //   {id:1,
+        //   name: 'test',
+        //     place: 1,
+        //     score: 10000
+        //   }
+        // ];
+        this.leaderboardEntries = data
       },
       (error) => {
         console.error('Error fetching leaderboard data', error);
