@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Make body and html take full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure the root app component takes full height */
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+footer {
+  bottom: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  width: 100%;
+  position: fixed;
+  text-align: center;
+}
+
+/* Global Page Layout */
+.header, .footer {
+  background-color: #3e246a;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 20px;
+}
+
+/* Main content fills the remaining space */
+.content {
+  flex: 1; /* This makes it expand */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3e246a; /* Ensure background is applied */
+  padding: 20px;
+}

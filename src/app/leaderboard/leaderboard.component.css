@@ -1,0 +1,33 @@
+mat-table {
+  width: 100%;
+  margin: 20px auto;
+}
+
+mat-header-cell {
+  font-weight: bold;
+}
+
+mat-cell, mat-header-cell {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Ensure table container takes full width */
+.mat-elevation-z8 {
+  width: 100%;
+}
+
+/* Table container */
+.table-container {
+  width: 100%;
+  max-width: 900px; /* Adjust width if needed */
+  background-color: white; /* White background for table */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+

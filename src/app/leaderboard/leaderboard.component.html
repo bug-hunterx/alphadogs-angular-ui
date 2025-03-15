@@ -1,0 +1,34 @@
+<div class="table-container">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <!-- Dog Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Dog Name</mat-header-cell>
+      <mat-cell *matCellDef="let entry"> {{ entry.dog.name }} </mat-cell>
+    </ng-container>
+
+    <!-- First Place Count Column -->
+    <ng-container matColumnDef="first_place_count">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> 1st Place</mat-header-cell>
+      <mat-cell *matCellDef="let entry"> {{ entry.first_place_count }} </mat-cell>
+    </ng-container>
+
+    <!-- Second Place Count Column -->
+    <ng-container matColumnDef="second_place_count">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> 2nd Place</mat-header-cell>
+      <mat-cell *matCellDef="let entry"> {{ entry.second_place_count }} </mat-cell>
+    </ng-container>
+
+    <!-- Third Place Count Column -->
+    <ng-container matColumnDef="third_place_count">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> 3rd Place</mat-header-cell>
+      <mat-cell *matCellDef="let entry"> {{ entry.third_place_count }} </mat-cell>
+    </ng-container>
+
+    <!-- Table Header and Rows -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</div>
+
