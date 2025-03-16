@@ -8,7 +8,11 @@
 }
 
 .logo {
-  height: 70px;
+  height: 100px;
+}
+
+.logo-right {
+  width: 100px;
 }
 
 .title {

@@ -1,8 +1,13 @@
 <div class="dog-label">
-  <div *ngFor="let dog of leaderboardEntries" class="leaderboard-item">
-    <div class="dog-place">{{ dog.place }}</div>
-    <!--    <img [src]="dog.dog_icon" alt="dog icon" class="dog-icon" />-->
-    <div class="dog-name">{{ dog.name }}</div>
-    <div class="dog-score">{{ dog.score }}</div>
+  <!-- Show the spinner while loading -->
+  <div *ngIf="loading" class="spinner"></div>
+
+  <div *ngIf="!loading">
+    <div *ngFor="let dog of leaderboardEntries" class="leaderboard-item">
+      <div class="dog-place">{{ dog.place }}</div>
+      <!--    <img [src]="dog.dog_icon" alt="dog icon" class="dog-icon" />-->
+      <div class="dog-name">{{ dog.name }}</div>
+      <div class="dog-score">{{ dog.score }}</div>
+    </div>
   </div>
 </div>

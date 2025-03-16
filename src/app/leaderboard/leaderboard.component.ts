@@ -17,6 +17,7 @@ interface LeaderboardEntry {
 })
 export class LeaderboardComponent implements OnInit {
   leaderboardEntries: LeaderboardEntry[] = [];
+  loading = true; // Start as true
 
   constructor(private http: HttpClient) {
   }
@@ -26,7 +27,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   fetchLeaderboard(): void {
-    this.http.get<LeaderboardEntry[]>('https://lwzylsk696.execute-api.ap-southeast-2.amazonaws.com/uat/dogs/leaderboard').subscribe(
+    this.http.get<LeaderboardEntry[]>('https://izrr3wibyl.execute-api.ap-southeast-2.amazonaws.com/prod/dogs/leaderboard').subscribe(
       (data) => {
         // this.leaderboardEntries = [
         //   {id:1,
@@ -35,10 +36,12 @@ export class LeaderboardComponent implements OnInit {
         //     score: 10000
         //   }
         // ];
-        this.leaderboardEntries = data
+        this.leaderboardEntries = data;
+        this.loading = false;
       },
       (error) => {
         console.error('Error fetching leaderboard data', error);
+        this.loading = false;
       }
     );
   }
