@@ -45,4 +45,11 @@ export class LeaderboardComponent implements OnInit {
       }
     );
   }
+
+  getMedal(place: number): string | null {
+    if (place === 1) return 'assets/gold.png';
+    if (place === 2) return 'assets/silver.png';
+    if (place === 3) return 'assets/bronze.png';
+    return null;
+  }
 }

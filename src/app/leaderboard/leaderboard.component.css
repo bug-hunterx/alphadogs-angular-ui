@@ -9,7 +9,7 @@
   background: #452080;
   padding: 10px;
   /*border-radius: 10px;*/
-  width: 400px;
+  width: 500px;
   margin: 10px 0;
   font-size: x-large;
 
@@ -70,4 +70,12 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.medal-icon {
+  width: 23px
+}
+
+.non-medal-icon {
+  min-width: 23px
 }
