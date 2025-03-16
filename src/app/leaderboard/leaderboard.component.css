@@ -9,7 +9,7 @@
   background: #452080;
   padding: 10px;
   /*border-radius: 10px;*/
-  width: 500px;
+  width: 450px;
   margin: 10px 0;
   font-size: x-large;
 
@@ -51,7 +51,7 @@
   padding: 10px;
   padding-left: 15px;
   /*border-radius: 5px;*/
-  min-width: 50px;
+  min-width: 70px;
 }
 
 .spinner {
@@ -73,9 +73,11 @@
 }
 
 .medal-icon {
-  width: 23px
+  width: 23px;
+  margin-left: 10px;
 }
 
 .non-medal-icon {
-  min-width: 23px
+  min-width: 23px;
+  margin-left: 10px;
 }
