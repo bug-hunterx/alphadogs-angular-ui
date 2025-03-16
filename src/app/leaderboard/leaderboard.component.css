@@ -1,16 +1,12 @@
 .leaderboard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+
 }
 
 .leaderboard-item {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #3f2469;
+  background: #452080;
   padding: 10px;
   /*border-radius: 10px;*/
   width: 400px;
@@ -51,7 +47,7 @@
 }
 
 .dog-score {
-  background: #6d36bc;
+  background: #6d32d0;
   padding: 10px;
   padding-left: 15px;
   /*border-radius: 5px;*/
