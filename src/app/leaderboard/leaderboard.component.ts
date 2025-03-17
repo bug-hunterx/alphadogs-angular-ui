@@ -8,6 +8,7 @@ interface LeaderboardEntry {
   score: number;
   name: string;
   place: number;
+  cropped_icon: string
 }
 
 @Component({
@@ -52,4 +53,5 @@ export class LeaderboardComponent implements OnInit {
     if (place === 3) return 'assets/bronze.png';
     return null;
   }
+
 }

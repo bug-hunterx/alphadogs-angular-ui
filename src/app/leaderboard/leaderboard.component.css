@@ -25,11 +25,11 @@
 }
 
 .dog-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 80px; /* Crop width */
+  height: 80px; /* Crop height */
   object-fit: cover;
-  margin-right: 10px;
+  object-position: 0 0; /* Crops from (0,0) */
+  border-radius: 50%; /* Keeps it circular */
 }
 
 .dog-details {

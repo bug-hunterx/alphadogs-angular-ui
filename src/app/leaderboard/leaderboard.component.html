@@ -5,7 +5,8 @@
   <div *ngIf="!loading">
     <div *ngFor="let dog of leaderboardEntries" class="leaderboard-item">
       <div class="dog-place">{{ dog.place }}</div>
-      <!--    <img [src]="dog.dog_icon" alt="dog icon" class="dog-icon" />-->
+      <img alt="dog icon" class="dog-icon"
+           src="https://alphadog-public-prod.s3.ap-southeast-2.amazonaws.com/{{ dog.id }}.png"/>
       <div class="dog-name">{{ dog.name }}</div>
       <div class="dog-score">{{ dog.score }}</div>
       <img *ngIf="getMedal(dog.place)"
