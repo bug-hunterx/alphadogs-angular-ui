@@ -1,5 +1,7 @@
 .leaderboard-container {
-
+  height: 80vh; /* Or any fixed height */
+  width: 460px;
+  overflow: auto;
 }
 
 .leaderboard-item {
@@ -80,4 +82,13 @@
 .non-medal-icon {
   min-width: 23px;
   margin-left: 10px;
+}
+
+cdk-virtual-scroll-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+cdk-virtual-scroll-viewport {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }

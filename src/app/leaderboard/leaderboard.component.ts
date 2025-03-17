@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
+import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
 
 interface LeaderboardEntry {
   id: number;
@@ -18,33 +17,44 @@ interface LeaderboardEntry {
 })
 export class LeaderboardComponent implements OnInit {
   leaderboardEntries: LeaderboardEntry[] = [];
-  loading = true; // Start as true
+  loading = false; // Start as true
+  page = 1;
+  limit = 10; // Number of items per request
+  hasMoreData = true; // If false, stop loading
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
-    this.fetchLeaderboard();
+    this.loadMore();
   }
 
-  fetchLeaderboard(): void {
-    this.http.get<LeaderboardEntry[]>('https://izrr3wibyl.execute-api.ap-southeast-2.amazonaws.com/prod/dogs/leaderboard').subscribe(
-      (data) => {
-        // this.leaderboardEntries = [
-        //   {id:1,
-        //   name: 'test',
-        //     place: 1,
-        //     score: 10000
-        //   }
-        // ];
-        this.leaderboardEntries = data;
-        this.loading = false;
-      },
-      (error) => {
-        console.error('Error fetching leaderboard data', error);
-        this.loading = false;
-      }
-    );
+  loadMore() {
+    if (this.loading || !this.hasMoreData) return;
+
+    this.loading = true;
+    this.http.get<LeaderboardEntry[]>(`https://izrr3wibyl.execute-api.ap-southeast-2.amazonaws.com/prod/dogs/leaderboard?page=${this.page}&limit=${this.limit}`)
+      .subscribe({
+        next: (data) => {
+          if (data.length < this.limit) {
+            this.hasMoreData = false; // Stop fetching if fewer results are returned
+          }
+          this.leaderboardEntries = [...this.leaderboardEntries, ...data];
+          this.page++;
+        },
+        error: () => {
+          this.hasMoreData = false;
+        },
+        complete: () => {
+          this.loading = false;
+        }
+      });
+  }
+
+  onScroll(index: number) {
+    if (index > this.leaderboardEntries.length - 8) { // Load more when 8 items from the bottom
+      this.loadMore();
+    }
   }
 
   getMedal(place: number): string | null {

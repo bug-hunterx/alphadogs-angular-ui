@@ -29,3 +29,8 @@
   text-align: right;
 }
 
+app-leaderboard {
+  display: flex;
+  justify-content: space-evenly;
+}
+

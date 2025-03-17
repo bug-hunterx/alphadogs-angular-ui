@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 import {AppComponent} from './app.component';
 import {LeaderboardComponent} from './leaderboard/leaderboard.component';
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 @NgModule({
   declarations: [AppComponent, LeaderboardComponent],
@@ -19,7 +20,8 @@ import {LeaderboardComponent} from './leaderboard/leaderboard.component';
     MatTableModule,
     MatSortModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

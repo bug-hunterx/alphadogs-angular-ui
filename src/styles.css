@@ -26,10 +26,10 @@ footer {
 
 /* Main content fills the remaining space */
 .content {
-  flex: 1; /* This makes it expand */
-  display: flex;
+  /*flex: 1; !* This makes it expand *!*/
+  /*display: flex;*/
   justify-content: space-evenly;
   align-items: normal;
   background-color: #452080; /* Ensure background is applied */
-  padding: 20px;
+  /*padding: 20px;*/
 }
