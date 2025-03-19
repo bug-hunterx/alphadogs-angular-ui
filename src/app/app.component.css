@@ -14,12 +14,22 @@
 .logo-right {
   width: 100px;
 }
+@media (max-width: 900px) {
+  .title {
+    font-size: x-large;
+  }
+}
 
+@media (min-width: 900px) {
+  .title {
+    font-size: xx-large;
+  }
+}
 .title {
   flex-grow: 1;
   text-align: center;
   margin: 0;
-  font-size: xx-large;
+
 }
 
 

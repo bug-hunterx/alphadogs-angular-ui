@@ -1,60 +1,124 @@
-.leaderboard-container {
-  height: 80vh; /* Or any fixed height */
-  width: 460px;
-  overflow: auto;
+@media (min-width: 900px) {
+  .leaderboard-container {
+    height: 80vh; /* Or any fixed height */
+    width: 50%;
+    overflow: auto;
+  }
+
+  .leaderboard-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #452080;
+    padding: 10px;
+    /*border-radius: 10px;*/
+    width: 97%;
+    margin: 10px 0;
+    font-size: x-large;
+
+    /*box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);*/
+  }
+
+  .dog-place {
+    font-weight: bold;
+    margin-right: 20px;
+    color: gold;
+    min-width: 15px;
+    /*background: #802ad9;*/
+  }
+
+  .dog-icon {
+    width: 80px; /* Crop width */
+    height: 80px; /* Crop height */
+    object-fit: cover;
+    object-position: 0 0; /* Crops from (0,0) */
+    border-radius: 50%; /* Keeps it circular */
+  }
+
+  .dog-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dog-name {
+    color: white;
+    background: #8451d3;
+    padding: 10px;
+    /*border-radius: 5px;*/
+    width: 100%
+  }
+
+  .dog-score {
+    background: #6d32d0;
+    padding: 10px;
+    padding-left: 15px;
+    /*border-radius: 5px;*/
+    min-width: 13%;
+  }
 }
 
-.leaderboard-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background: #452080;
-  padding: 10px;
-  /*border-radius: 10px;*/
-  width: 450px;
-  margin: 10px 0;
-  font-size: x-large;
 
-  /*box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);*/
+@media (max-width: 900px) {
+  .leaderboard-container {
+    height: 80vh; /* Or any fixed height */
+    width: 90%;
+    overflow: auto;
+  }
+
+  .leaderboard-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #452080;
+    padding: 10px;
+    /*border-radius: 10px;*/
+    width: 97%;
+    margin: 10px 0;
+    font-size: medium;
+
+    /*box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);*/
+  }
+
+  .dog-place {
+    font-weight: bold;
+    margin-right: 20px;
+    color: gold;
+    min-width: 15px;
+    /*background: #802ad9;*/
+  }
+
+  .dog-icon {
+    width: 80px; /* Crop width */
+    height: 80px; /* Crop height */
+    object-fit: cover;
+    object-position: 0 0; /* Crops from (0,0) */
+    border-radius: 50%; /* Keeps it circular */
+  }
+
+  .dog-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dog-name {
+    color: white;
+    background: #8451d3;
+    padding: 10px;
+    /*border-radius: 5px;*/
+    width: 100%
+  }
+
+  .dog-score {
+    background: #6d32d0;
+    padding: 10px;
+    padding-left: 15px;
+    /*border-radius: 5px;*/
+    min-width: 13%;
+  }
 }
 
-.dog-place {
-  font-weight: bold;
-  margin-right: 20px;
-  color: gold;
-  min-width: 15px;
-  /*background: #802ad9;*/
-}
-
-.dog-icon {
-  width: 80px; /* Crop width */
-  height: 80px; /* Crop height */
-  object-fit: cover;
-  object-position: 0 0; /* Crops from (0,0) */
-  border-radius: 50%; /* Keeps it circular */
-}
-
-.dog-details {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.dog-name {
-  color: white;
-  background: #8451d3;
-  padding: 10px;
-  /*border-radius: 5px;*/
-  width: 100%
-}
-
-.dog-score {
-  background: #6d32d0;
-  padding: 10px;
-  padding-left: 15px;
-  /*border-radius: 5px;*/
-  min-width: 70px;
-}
 
 .spinner {
   width: 50px;
