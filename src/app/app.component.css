@@ -39,8 +39,12 @@
   text-align: right;
 }
 
-app-leaderboard {
-  display: flex;
-  justify-content: space-evenly;
+.content {
+  padding: 20px;
 }
 
+app-leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

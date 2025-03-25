@@ -1,8 +1,24 @@
-<cdk-virtual-scroll-viewport (scrolledIndexChange)="onScroll($event)" class="leaderboard-container" itemSize="80">
-  <!--  &lt;!&ndash; Show the spinner while loading &ndash;&gt;-->
-  <!--  <div *ngIf="loading" class="spinner"></div>-->
+<div class="competition-selector">
+  <label for="competition-select">Select Competition:</label>
+  <select (change)="selectCompetition(competitions[$any($event.target).value])" [disabled]="loadingCompetitions"
+          id="competition-select">
+    <option *ngFor="let competition of competitions; let i = index" [value]="i">
+      {{ competition.name }}
+    </option>
+  </select>
+  <div *ngIf="loadingCompetitions" class="spinner"></div>
+</div>
 
-  <!--  <div *ngIf="!loading">-->
+<div *ngIf="selectedCompetition" class="competition-info">
+  <h2>{{ selectedCompetition.name }}</h2>
+  <p>{{ selectedCompetition.start_time | date }} - {{ selectedCompetition.end_time | date }}</p>
+</div>
+
+<cdk-virtual-scroll-viewport (scrolledIndexChange)="onScroll($event)" class="leaderboard-container" itemSize="80">
+  <div *ngIf="loading" class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+
   <div *cdkVirtualFor="let dog of leaderboardEntries" class="leaderboard-item">
     <div class="dog-place">{{ dog.place }}</div>
     <img alt="dog icon" class="dog-icon"
@@ -14,5 +30,4 @@
          class="medal-icon"/>
     <div *ngIf="!getMedal(dog.place)" class="non-medal-icon"></div>
   </div>
-  <!--  </div>-->
 </cdk-virtual-scroll-viewport>

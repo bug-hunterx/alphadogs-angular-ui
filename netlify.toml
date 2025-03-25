@@ -1,6 +1,6 @@
 [build]
-  command="ng build"
-  publish="dist/angular-quickstart"
+  command = "ng build --configuration production"
+publish = "dist/angular-quickstart"
 
 [[redirects]]
   from = "/*"
