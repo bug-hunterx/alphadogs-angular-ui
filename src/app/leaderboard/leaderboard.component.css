@@ -3,7 +3,6 @@
 .competition-selector {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
   padding: 10px;
   background: #452080;
   border-radius: 5px;
@@ -13,6 +12,7 @@
   margin-right: 10px;
   color: white;
   font-weight: bold;
+  font-size: large;
 }
 
 .competition-selector select {
@@ -21,7 +21,7 @@
   border: 1px solid #8451d3;
   background-color: #6d32d0;
   color: white;
-  font-size: 16px;
+  font-size: large;
   cursor: pointer;
 }
 
@@ -31,11 +31,10 @@
 }
 
 .competition-info {
-  margin-bottom: 20px;
   padding: 10px;
   background: #452080;
-  border-radius: 5px;
   color: white;
+  text-align: center;
 }
 
 .competition-info h2 {

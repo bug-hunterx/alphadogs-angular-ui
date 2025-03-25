@@ -11,7 +11,8 @@
 
 <div *ngIf="selectedCompetition" class="competition-info">
   <h2>{{ selectedCompetition.name }}</h2>
-  <p>{{ selectedCompetition.start_time | date }} - {{ selectedCompetition.end_time | date }}</p>
+  <p>{{ selectedCompetition.start_time | date: 'MMM dd, yyyy hh:mm a'  }}
+    - {{ selectedCompetition.end_time | date: 'MMM dd, yyyy hh:mm a' }}</p>
 </div>
 
 <cdk-virtual-scroll-viewport (scrolledIndexChange)="onScroll($event)" class="leaderboard-container" itemSize="80">
