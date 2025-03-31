@@ -25,7 +25,7 @@
     <img alt="dog icon" class="dog-icon"
          src="https://alphadog-public-prod.s3.ap-southeast-2.amazonaws.com/{{ dog.id }}.png"/>
     <div class="dog-name">{{ dog.name }}</div>
-    <div class="dog-score">{{ dog.score }}{{ selectedCompetition?.type == 'MIN_TIME_BASED' ? 's' : ''}}</div>
+    <div class="dog-score">{{ dog.score }}{{ selectedCompetition?.type == 'TIME_BASED' ? 's' : ''}}</div>
     <img *ngIf="getMedal(dog.place)"
          [src]="getMedal(dog.place)"
          class="medal-icon"/>
