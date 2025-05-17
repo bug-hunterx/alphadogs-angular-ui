@@ -1,34 +1,127 @@
-<div class="competition-selector">
-  <label for="competition-select">Select Competition:</label>
-  <select (change)="selectCompetition(competitions[$any($event.target).value])" [disabled]="loadingCompetitions"
-          id="competition-select">
-    <option *ngFor="let competition of competitions; let i = index" [value]="i">
-      {{ competition.name }}
-    </option>
-  </select>
-  <div *ngIf="loadingCompetitions" class="spinner"></div>
-</div>
+<mat-tab-group (selectedIndexChange)="onTabChange($event)" [selectedIndex]="selectedTabIndex" class="leaderboard-tabs">
+  <!-- Active Competitions Tab -->
+  <mat-tab label="Active Competitions">
+    <div class="tab-content">
+      <div class="competition-selector">
+        <label for="active-competition-select">Select Competition:</label>
+        <select (change)="selectCompetition(activeCompetitions[$any($event.target).value])"
+                [disabled]="loadingCompetitions"
+                id="active-competition-select">
+          <option *ngFor="let competition of activeCompetitions; let i = index" [value]="i">
+            {{ competition.name }}
+          </option>
+        </select>
+        <div *ngIf="loadingCompetitions" class="spinner"></div>
+      </div>
 
-<div *ngIf="selectedCompetition" class="competition-info">
-  <h2>{{ selectedCompetition.name }}</h2>
-  <p>{{ selectedCompetition.start_time | date: 'MMM dd, yyyy hh:mm a'  }}
-    - {{ selectedCompetition.end_time | date: 'MMM dd, yyyy hh:mm a' }}</p>
-</div>
+      <div *ngIf="selectedCompetition && selectedTabIndex === 0" class="competition-info">
+        <h2>{{ selectedCompetition.name }}</h2>
+        <p>{{ selectedCompetition.start_time | date: 'MMM dd, yyyy hh:mm a'  }}
+          - {{ selectedCompetition.end_time | date: 'MMM dd, yyyy hh:mm a' }}</p>
+      </div>
 
-<cdk-virtual-scroll-viewport (scrolledIndexChange)="onScroll($event)" class="leaderboard-container" itemSize="80">
-  <div *ngIf="loading" class="spinner-container">
-    <div class="spinner"></div>
-  </div>
+      <cdk-virtual-scroll-viewport (scrolledIndexChange)="onScroll($event)" *ngIf="selectedTabIndex === 0"
+                                   class="leaderboard-container" itemSize="80">
+        <div *ngIf="loading" class="spinner-container">
+          <div class="spinner"></div>
+        </div>
 
-  <div *cdkVirtualFor="let dog of leaderboardEntries" class="leaderboard-item">
-    <div class="dog-place">{{ dog.place }}</div>
-    <img alt="dog icon" class="dog-icon"
-         src="https://alphadog-public-prod.s3.ap-southeast-2.amazonaws.com/{{ dog.id }}.png"/>
-    <div class="dog-name">{{ dog.name }}</div>
-    <div class="dog-score">{{ dog.score }}{{ selectedCompetition?.type == 'TIME_BASED' ? 's' : ''}}</div>
-    <img *ngIf="getMedal(dog.place)"
-         [src]="getMedal(dog.place)"
-         class="medal-icon"/>
-    <div *ngIf="!getMedal(dog.place)" class="non-medal-icon"></div>
-  </div>
-</cdk-virtual-scroll-viewport>
+        <div *cdkVirtualFor="let dog of leaderboardEntries" class="leaderboard-item">
+          <div class="dog-place">{{ dog.place }}</div>
+          <img alt="dog icon" class="dog-icon"
+               src="https://alphadog-public-prod.s3.ap-southeast-2.amazonaws.com/{{ dog.id }}.png"/>
+          <div class="dog-name">{{ dog.name }}</div>
+          <div class="dog-score">{{ dog.score }}{{ selectedCompetition?.type == 'TIME_BASED' ? 's' : ''}}</div>
+          <img *ngIf="getMedal(dog.place)"
+               [src]="getMedal(dog.place)"
+               class="medal-icon"/>
+          <div *ngIf="!getMedal(dog.place)" class="non-medal-icon"></div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </mat-tab>
+
+  <!-- Future Competitions Tab -->
+  <mat-tab label="Future Competitions">
+    <div class="tab-content">
+      <div class="competition-selector">
+        <label for="future-competition-select">Select Competition:</label>
+        <select (change)="selectCompetition(futureCompetitions[$any($event.target).value])"
+                [disabled]="loadingCompetitions"
+                id="future-competition-select">
+          <option *ngFor="let competition of futureCompetitions; let i = index" [value]="i">
+            {{ competition.name }}
+          </option>
+        </select>
+        <div *ngIf="loadingCompetitions" class="spinner"></div>
+      </div>
+
+      <div *ngIf="selectedCompetition && selectedTabIndex === 1" class="competition-info">
+        <h2>{{ selectedCompetition.name }}</h2>
+        <p>{{ selectedCompetition.start_time | date: 'MMM dd, yyyy hh:mm a'  }}
+          - {{ selectedCompetition.end_time | date: 'MMM dd, yyyy hh:mm a' }}</p>
+      </div>
+
+      <cdk-virtual-scroll-viewport (scrolledIndexChange)="onScroll($event)" *ngIf="selectedTabIndex === 1"
+                                   class="leaderboard-container" itemSize="80">
+        <div *ngIf="loading" class="spinner-container">
+          <div class="spinner"></div>
+        </div>
+
+        <div *cdkVirtualFor="let dog of leaderboardEntries" class="leaderboard-item">
+          <div class="dog-place">{{ dog.place }}</div>
+          <img alt="dog icon" class="dog-icon"
+               src="https://alphadog-public-prod.s3.ap-southeast-2.amazonaws.com/{{ dog.id }}.png"/>
+          <div class="dog-name">{{ dog.name }}</div>
+          <div class="dog-score">{{ dog.score }}{{ selectedCompetition?.type == 'TIME_BASED' ? 's' : ''}}</div>
+          <img *ngIf="getMedal(dog.place)"
+               [src]="getMedal(dog.place)"
+               class="medal-icon"/>
+          <div *ngIf="!getMedal(dog.place)" class="non-medal-icon"></div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </mat-tab>
+
+  <!-- Past Competitions Tab -->
+  <mat-tab label="Past Competitions">
+    <div class="tab-content">
+      <div class="competition-selector">
+        <label for="past-competition-select">Select Competition:</label>
+        <select (change)="selectCompetition(pastCompetitions[$any($event.target).value])"
+                [disabled]="loadingCompetitions"
+                id="past-competition-select">
+          <option *ngFor="let competition of pastCompetitions; let i = index" [value]="i">
+            {{ competition.name }}
+          </option>
+        </select>
+        <div *ngIf="loadingCompetitions" class="spinner"></div>
+      </div>
+
+      <div *ngIf="selectedCompetition && selectedTabIndex === 2" class="competition-info">
+        <h2>{{ selectedCompetition.name }}</h2>
+        <p>{{ selectedCompetition.start_time | date: 'MMM dd, yyyy hh:mm a'  }}
+          - {{ selectedCompetition.end_time | date: 'MMM dd, yyyy hh:mm a' }}</p>
+      </div>
+
+      <cdk-virtual-scroll-viewport (scrolledIndexChange)="onScroll($event)" *ngIf="selectedTabIndex === 2"
+                                   class="leaderboard-container" itemSize="80">
+        <div *ngIf="loading" class="spinner-container">
+          <div class="spinner"></div>
+        </div>
+
+        <div *cdkVirtualFor="let dog of leaderboardEntries" class="leaderboard-item">
+          <div class="dog-place">{{ dog.place }}</div>
+          <img alt="dog icon" class="dog-icon"
+               src="https://alphadog-public-prod.s3.ap-southeast-2.amazonaws.com/{{ dog.id }}.png"/>
+          <div class="dog-name">{{ dog.name }}</div>
+          <div class="dog-score">{{ dog.score }}{{ selectedCompetition?.type == 'TIME_BASED' ? 's' : ''}}</div>
+          <img *ngIf="getMedal(dog.place)"
+               [src]="getMedal(dog.place)"
+               class="medal-icon"/>
+          <div *ngIf="!getMedal(dog.place)" class="non-medal-icon"></div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </mat-tab>
+</mat-tab-group>

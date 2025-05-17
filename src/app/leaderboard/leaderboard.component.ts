@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
 import {environment} from '../../environments/environment';
 
 interface Competition {
@@ -44,16 +43,25 @@ interface LeaderboardResponse {
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
+  // All competitions
   competitions: Competition[] = [];
+  // Categorized competitions
+  activeCompetitions: Competition[] = [];
+  futureCompetitions: Competition[] = [];
+  pastCompetitions: Competition[] = [];
+
   selectedCompetition: Competition | null = null;
   leaderboardEntries: LeaderboardEntry[] = [];
   loading = false;
   loadingCompetitions = false;
   page = 1;
-  limit = 10; // Number of items per request
+  limit = 100; // Number of items per request
   hasMoreData = true; // If false, stop loading
   baseUrl = environment.apiBaseUrl;
   env = environment.apiEnv;
+
+  // Tab index: 0 = Active, 1 = Future, 2 = Past
+  selectedTabIndex = 0;
 
   constructor(private http: HttpClient) {
   }
@@ -64,12 +72,35 @@ export class LeaderboardComponent implements OnInit {
 
   loadCompetitions() {
     this.loadingCompetitions = true;
-    this.http.get<CompetitionsResponse>(`${this.baseUrl}/${this.env}/competitions`)
+    this.http.get<CompetitionsResponse>(`${this.baseUrl}/${this.env}/competitions?limit=100`)
       .subscribe({
         next: (response) => {
           this.competitions = response.competitions;
-          if (this.competitions.length > 0) {
-            this.selectCompetition(this.competitions[0]);
+
+          // Categorize competitions based on their dates
+          const currentTime = new Date().toISOString();
+
+          this.activeCompetitions = this.competitions.filter(comp =>
+            comp.start_time < currentTime && comp.end_time > currentTime
+          );
+
+          this.futureCompetitions = this.competitions.filter(comp =>
+            comp.start_time > currentTime
+          );
+
+          this.pastCompetitions = this.competitions.filter(comp =>
+            comp.end_time < currentTime
+          );
+
+          // Select the first competition in the active tab by default
+          if (this.activeCompetitions.length > 0) {
+            this.selectCompetition(this.activeCompetitions[0]);
+          } else if (this.futureCompetitions.length > 0) {
+            this.selectedTabIndex = 1; // Switch to future tab
+            this.selectCompetition(this.futureCompetitions[0]);
+          } else if (this.pastCompetitions.length > 0) {
+            this.selectedTabIndex = 2; // Switch to past tab
+            this.selectCompetition(this.pastCompetitions[0]);
           }
         },
         error: (error) => {
@@ -80,6 +111,23 @@ export class LeaderboardComponent implements OnInit {
           this.loadingCompetitions = false;
         }
       });
+  }
+
+  onTabChange(tabIndex: number) {
+    this.selectedTabIndex = tabIndex;
+
+    // Select the first competition in the selected tab
+    if (tabIndex === 0 && this.activeCompetitions.length > 0) {
+      this.selectCompetition(this.activeCompetitions[0]);
+    } else if (tabIndex === 1 && this.futureCompetitions.length > 0) {
+      this.selectCompetition(this.futureCompetitions[0]);
+    } else if (tabIndex === 2 && this.pastCompetitions.length > 0) {
+      this.selectCompetition(this.pastCompetitions[0]);
+    } else {
+      // Reset if no competitions in the selected tab
+      this.selectedCompetition = null;
+      this.resetLeaderboard();
+    }
   }
 
   selectCompetition(competition: Competition) {
