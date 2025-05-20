@@ -49,6 +49,7 @@ export class LeaderboardComponent implements OnInit {
   activeCompetitions: Competition[] = [];
   futureCompetitions: Competition[] = [];
   pastCompetitions: Competition[] = [];
+  currentAndFutureCompetitions: Competition[] = [];
 
   selectedCompetition: Competition | null = null;
   leaderboardEntries: LeaderboardEntry[] = [];
@@ -60,7 +61,7 @@ export class LeaderboardComponent implements OnInit {
   baseUrl = environment.apiBaseUrl;
   env = environment.apiEnv;
 
-  // Tab index: 0 = Active, 1 = Future, 2 = Past
+  // Tab index: 0 = Current & Future, 1 = Past
   selectedTabIndex = 0;
 
   constructor(private http: HttpClient) {
@@ -92,14 +93,17 @@ export class LeaderboardComponent implements OnInit {
             comp.end_time < currentTime
           );
 
-          // Select the first competition in the active tab by default
-          if (this.activeCompetitions.length > 0) {
-            this.selectCompetition(this.activeCompetitions[0]);
-          } else if (this.futureCompetitions.length > 0) {
-            this.selectedTabIndex = 1; // Switch to future tab
-            this.selectCompetition(this.futureCompetitions[0]);
+          this.currentAndFutureCompetitions = [
+            ...this.activeCompetitions,
+            ...this.futureCompetitions
+          ];
+
+          // Select the first competition in the current & future tab by default
+          if (this.currentAndFutureCompetitions.length > 0) {
+            this.selectedTabIndex = 0;
+            this.selectCompetition(this.currentAndFutureCompetitions[0]);
           } else if (this.pastCompetitions.length > 0) {
-            this.selectedTabIndex = 2; // Switch to past tab
+            this.selectedTabIndex = 1;
             this.selectCompetition(this.pastCompetitions[0]);
           }
         },
@@ -117,11 +121,9 @@ export class LeaderboardComponent implements OnInit {
     this.selectedTabIndex = tabIndex;
 
     // Select the first competition in the selected tab
-    if (tabIndex === 0 && this.activeCompetitions.length > 0) {
-      this.selectCompetition(this.activeCompetitions[0]);
-    } else if (tabIndex === 1 && this.futureCompetitions.length > 0) {
-      this.selectCompetition(this.futureCompetitions[0]);
-    } else if (tabIndex === 2 && this.pastCompetitions.length > 0) {
+    if (tabIndex === 0 && this.currentAndFutureCompetitions.length > 0) {
+      this.selectCompetition(this.currentAndFutureCompetitions[0]);
+    } else if (tabIndex === 1 && this.pastCompetitions.length > 0) {
       this.selectCompetition(this.pastCompetitions[0]);
     } else {
       // Reset if no competitions in the selected tab
