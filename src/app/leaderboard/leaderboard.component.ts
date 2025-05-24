@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {CdkVirtualScrollViewport, ScrollingModule} from '@angular/cdk/scrolling';
+import {MatTabsModule} from '@angular/material/tabs';
 import {environment} from '../../environments/environment';
 
 interface Competition {
@@ -43,7 +44,7 @@ interface LeaderboardResponse {
   selector: 'app-leaderboard',
   templateUrl: './leaderboard.component.html',
   styleUrls: ['./leaderboard.component.css'],
-  imports: [CommonModule, ScrollingModule]
+  imports: [CommonModule, ScrollingModule, MatTabsModule]
 })
 export class LeaderboardComponent implements OnInit {
   // All competitions
@@ -120,7 +121,8 @@ export class LeaderboardComponent implements OnInit {
       });
   }
 
-  onTabChange(tabIndex: number) {
+  onTabChange(event: number) {
+    const tabIndex = event;
     this.selectedTabIndex = tabIndex;
 
     // Select the first competition in the selected tab

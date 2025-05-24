@@ -1,6 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+/* Custom Material Tab Styles */
+.mat-mdc-tab-header {
+  --mat-tab-header-active-label-text-color: #ffd740;
+  --mat-tab-header-inactive-label-text-color: #ffffff;
+  --mat-tab-header-active-ripple-color: #ffd740;
+  --mat-tab-header-inactive-ripple-color: #ffffff;
+  --mat-tab-header-active-focus-label-text-color: #ffd740;
+  --mat-tab-header-active-hover-label-text-color: #ffd740;
+  --mat-tab-header-active-focus-indicator-color: #ffd740;
+  --mat-tab-header-active-hover-indicator-color: #ffd740;
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: inherit;
+}
+
 /* Make body and html take full height */
 html, body {
   height: 100%;

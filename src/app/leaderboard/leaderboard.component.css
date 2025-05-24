@@ -1,6 +1,19 @@
 /* ===== TAB STYLES ===== */
 .leaderboard-tabs {
-  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mdc-tab__text-label {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 1;
+}
+
+.mat-tab-label-active {
+  color: #ffd740;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .tab-content {
