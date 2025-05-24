@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
+import {CdkVirtualScrollViewport, ScrollingModule} from '@angular/cdk/scrolling';
 import {environment} from '../../environments/environment';
 
 interface Competition {
@@ -40,7 +42,8 @@ interface LeaderboardResponse {
 @Component({
   selector: 'app-leaderboard',
   templateUrl: './leaderboard.component.html',
-  styleUrls: ['./leaderboard.component.css']
+  styleUrls: ['./leaderboard.component.css'],
+  imports: [CommonModule, ScrollingModule]
 })
 export class LeaderboardComponent implements OnInit {
   // All competitions

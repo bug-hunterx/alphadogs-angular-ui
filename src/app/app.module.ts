@@ -13,8 +13,10 @@ import {LeaderboardComponent} from './leaderboard/leaderboard.component';
 import {ScrollingModule} from "@angular/cdk/scrolling";
 
 @NgModule({
-  declarations: [AppComponent, LeaderboardComponent],
+  declarations: [],
   imports: [
+    AppComponent,
+    LeaderboardComponent,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
